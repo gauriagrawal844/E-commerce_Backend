@@ -72,8 +72,6 @@ exports.signup = async (req, res) => {
           return sendResponse(res, 400, "Phone number already exists", null);
         }
         const hashPassword=await bcrypt.hash(password,+process.env.SALT_ROUND);
-        // const user = new User({...req.body,password:hashPassword});
-        // await user.save();
         await User.create({...req.body,password:hashPassword});
         return sendResponse(res, 201, "sign up successful", null);
             
